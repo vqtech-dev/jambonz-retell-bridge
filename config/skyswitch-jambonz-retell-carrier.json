@@ -8,18 +8,18 @@
   "e164_leading_plus": true,
   "is_active": true,
   "sip_gateway": {
-    "ipv4": "nms5-atl.dialtoen.com",
+    "ipv4": "22393.hpbx.outboundproxy.com",
     "port": 5060,
-    "protocol": "tcp",
+    "protocol": "udp",
     "outbound": true,
     "inbound": false,
     "is_active": true
   },
   "notes": {
-    "registrar_host": "nms5-atl.dialtoen.com resolves to 207.254.80.47 (confirmed)",
-    "transport": "TCP explicitly — matches working KickCalltest registration",
+    "registrar_host": "22393.hpbx.outboundproxy.com — matches working Vqtech/SkySwitch jambonz carrier",
+    "transport": "UDP — same as working jambonz.cloud to SkySwitch registration path",
     "codecs": "PCMU (0), PCMA (8), telephone-event (101)",
-    "auth_pattern": "407 Proxy-Authentication-Required on INVITE, re-INVITE with Proxy-Authorization",
+    "auth_pattern": "REGISTER -> 401/407 -> REGISTER with Authorization (digest)",
     "register_password": "Set via SKYSWITCH_REGISTER_PASSWORD env var — do not commit"
   }
 }

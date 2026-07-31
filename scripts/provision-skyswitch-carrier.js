@@ -3,7 +3,7 @@
  * Provision the SkySwitch-JambonzRetell registration carrier on jambonz.
  *
  * Creates a separate registration trunk (trunk_type=reg) that registers
- * KickCalltest@visionquest.22393.service to nms5-atl.dialtoen.com over TCP.
+ * KickCalltest@visionquest.22393.service to 22393.hpbx.outboundproxy.com over UDP.
  * Does NOT modify any existing Retell-Trunk carrier.
  *
  * Required env:
@@ -11,15 +11,15 @@
  *   JAMBONZ_API_KEY
  *   JAMBONZ_SERVICE_PROVIDER_SID
  *
- * Optional env (defaults match working KickCalltest trace):
+ * Optional env (defaults match working Vqtech/SkySwitch jambonz carrier):
  *   JAMBONZ_API_BASE_URL          https://api.jambonz.cloud/v1
  *   SKYSWITCH_CARRIER_NAME        SkySwitch-JambonzRetell
  *   SKYSWITCH_REGISTER_USERNAME   KickCalltest
  *   SKYSWITCH_REGISTER_PASSWORD   (required)
  *   SKYSWITCH_SIP_REALM           visionquest.22393.service
- *   SKYSWITCH_REGISTRAR_HOST      nms5-atl.dialtoen.com
+ *   SKYSWITCH_REGISTRAR_HOST      22393.hpbx.outboundproxy.com
  *   SKYSWITCH_REGISTRAR_PORT      5060
- *   SKYSWITCH_REGISTRAR_PROTOCOL  tcp
+ *   SKYSWITCH_REGISTRAR_PROTOCOL  udp
  *   JAMBONZ_APPLICATION_SID       attach inbound calls to this app (optional)
  */
 const {request} = require('undici');
@@ -138,6 +138,22 @@ const main = async() => {
     console.log(`Creating outbound SIP gateway ${REGISTRAR_HOST}:${REGISTRAR_PORT} (${REGISTRAR_PROTOCOL})`);
     const {data} = await api('POST', '/SipGateways', gatewayPayload);
     console.log(`Created gateway sid=${data.sid}`);
+  }
+
+  for (const gw of gateways) {
+    if (gw.outbound && gw.ipv4 !== REGISTRAR_HOST && gw.is_active) {
+      console.log(`Deactivating stale outbound gateway ${gw.ipv4}:${gw.port} (${gw.sip_gateway_sid})`);
+      await api('PUT', `/SipGateways/${gw.sip_gateway_sid}`, {
+        ipv4: gw.ipv4,
+        port: gw.port,
+        netmask: gw.netmask,
+        voip_carrier_sid: gw.voip_carrier_sid,
+        inbound: gw.inbound,
+        outbound: false,
+        is_active: false,
+        protocol: gw.protocol
+      });
+    }
   }
 
   console.log('\nDone. Carrier configuration:');
