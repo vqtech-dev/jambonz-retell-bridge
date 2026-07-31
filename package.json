@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app",
-    "jslint": "eslint app.js lib"
+    "jslint": "eslint app.js lib",
+    "provision:skyswitch": "node scripts/provision-skyswitch-carrier.js"
   },
   "author": "",
   "license": "MIT",
