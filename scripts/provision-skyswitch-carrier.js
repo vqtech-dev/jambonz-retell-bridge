@@ -130,10 +130,7 @@ const main = async() => {
   const existingGw = gateways.find((g) => g.ipv4 === REGISTRAR_HOST && g.port === REGISTRAR_PORT);
   if (existingGw) {
     console.log(`SIP gateway exists (${existingGw.sip_gateway_sid}), updating to ${REGISTRAR_PROTOCOL}`);
-    await api('PUT', `/SipGateways/${existingGw.sip_gateway_sid}`, {
-      ...gatewayPayload,
-      sip_gateway_sid: existingGw.sip_gateway_sid
-    });
+    await api('PUT', `/SipGateways/${existingGw.sip_gateway_sid}`, gatewayPayload);
   } else {
     console.log(`Creating outbound SIP gateway ${REGISTRAR_HOST}:${REGISTRAR_PORT} (${REGISTRAR_PROTOCOL})`);
     const {data} = await api('POST', '/SipGateways', gatewayPayload);
