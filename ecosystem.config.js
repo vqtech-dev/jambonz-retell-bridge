@@ -16,7 +16,13 @@ module.exports = {
       JAMBONZ_API_KEY: 'your_api_key',
       JAMBONZ_REST_API_BASE_URL: 'https://jambonz.cloud/api/v1', // or replace with your own self-hosted jambonz URL
       RETELL_API_KEY: 'your_retell_api_key',
-      RETELL_AGENT_ID: 'your_retell_agent_id'
+      RETELL_AGENT_ID: 'your_retell_agent_id',
+      RETELL_TRUNK_NAME: 'Retell-Trunk',
+      SKYSWITCH_CARRIER_NAME: 'SkySwitch-JambonzRetell',
+      SKYSWITCH_SIP_REALM: 'visionquest.22393.service',
+      SKYSWITCH_REGISTER_USERNAME: 'KickCalltest',
+      SKYSWITCH_EXTENSION_DOMAIN: 'visionquest.22393.service',
+      OWN_DIDS: '+12297406150'
     }
   }]
 };

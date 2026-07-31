@@ -13,7 +13,31 @@
         "description":"The name of the Client you configured in jambonz for Retell"
     },
     "PSTN_TRUNK_NAME": {
-        "description":"The name of the Carrier you configured in jambonz towards your SIP service provider"
+        "description":"Legacy alias for SKYSWITCH_CARRIER_NAME — the SkySwitch registration carrier used for transfer legs"
+    },
+    "SKYSWITCH_CARRIER_NAME": {
+        "description":"Name of the jambonz registration carrier for SkySwitch (default: SkySwitch-JambonzRetell)"
+    },
+    "SKYSWITCH_SIP_REALM": {
+        "description":"SkySwitch SIP realm for registration (e.g. visionquest.22393.service)"
+    },
+    "SKYSWITCH_REGISTER_USERNAME": {
+        "description":"SkySwitch SIP device username used for registration trunk auth (e.g. KickCalltest)"
+    },
+    "SKYSWITCH_EXTENSION_DOMAIN": {
+        "description":"SkySwitch domain for on-net extension transfers (defaults to SKYSWITCH_SIP_REALM)"
+    },
+    "NURSE_LINE_DID": {
+        "description":"11-digit DID that maps to an internal SkySwitch extension for warm transfer",
+        "required": false
+    },
+    "NURSE_LINE_EXTENSION": {
+        "description":"Short SkySwitch extension to dial for NURSE_LINE_DID transfers (e.g. 1009)",
+        "required": false
+    },
+    "OWN_DIDS": {
+        "description":"Comma-separated own DIDs used to detect Retell-originated transfer legs",
+        "required": false
     },
     "DEFAULT_COUNTRY": {
         "description":"The 2 *CHARACTER* ISO-3166 Country Code for your phone number eg US, GB, ES, see https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 for values",

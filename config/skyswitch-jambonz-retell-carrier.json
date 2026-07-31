@@ -1,0 +1,25 @@
+{
+  "name": "SkySwitch-JambonzRetell",
+  "description": "SkySwitch registration trunk for jambonz-retell-bridge (KickCalltest SIP device)",
+  "trunk_type": "reg",
+  "requires_register": true,
+  "register_username": "KickCalltest",
+  "register_sip_realm": "visionquest.22393.service",
+  "e164_leading_plus": true,
+  "is_active": true,
+  "sip_gateway": {
+    "ipv4": "nms5-atl.dialtoen.com",
+    "port": 5060,
+    "protocol": "tcp",
+    "outbound": true,
+    "inbound": false,
+    "is_active": true
+  },
+  "notes": {
+    "registrar_host": "nms5-atl.dialtoen.com resolves to 207.254.80.47 (confirmed)",
+    "transport": "TCP explicitly — matches working KickCalltest registration",
+    "codecs": "PCMU (0), PCMA (8), telephone-event (101)",
+    "auth_pattern": "407 Proxy-Authentication-Required on INVITE, re-INVITE with Proxy-Authorization",
+    "register_password": "Set via SKYSWITCH_REGISTER_PASSWORD env var — do not commit"
+  }
+}
