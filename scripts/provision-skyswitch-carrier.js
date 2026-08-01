@@ -3,7 +3,7 @@
  * Provision the SkySwitch-JambonzRetell registration carrier on jambonz.
  *
  * Creates a separate registration trunk (trunk_type=reg) that registers
- * KickCalltest@visionquest.22393.service to 22393.hpbx.outboundproxy.com over UDP.
+ * JambonzRetell@visionquest.22393.service to 22393.hpbx.outboundproxy.com over UDP.
  * Does NOT modify any existing Retell-Trunk carrier.
  *
  * Required env:
@@ -14,7 +14,7 @@
  * Optional env (defaults match working Vqtech/SkySwitch jambonz carrier):
  *   JAMBONZ_API_BASE_URL          https://api.jambonz.cloud/v1
  *   SKYSWITCH_CARRIER_NAME        SkySwitch-JambonzRetell
- *   SKYSWITCH_REGISTER_USERNAME   KickCalltest
+ *   SKYSWITCH_REGISTER_USERNAME   JambonzRetell
  *   SKYSWITCH_REGISTER_PASSWORD   (required)
  *   SKYSWITCH_SIP_REALM           visionquest.22393.service
  *   SKYSWITCH_REGISTRAR_HOST      22393.hpbx.outboundproxy.com
@@ -98,6 +98,7 @@ const main = async() => {
     register_username: REGISTER_USERNAME,
     register_sip_realm: REGISTER_REALM,
     register_password: REGISTER_PASSWORD,
+    register_from_user: REGISTER_USERNAME,
     e164_leading_plus: true,
     is_active: true
   };

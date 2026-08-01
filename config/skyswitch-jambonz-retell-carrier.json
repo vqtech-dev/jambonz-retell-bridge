@@ -1,9 +1,9 @@
 {
   "name": "SkySwitch-JambonzRetell",
-  "description": "SkySwitch registration trunk for jambonz-retell-bridge (KickCalltest SIP device)",
+  "description": "SkySwitch registration trunk for jambonz-retell-bridge (JambonzRetell SIP device)",
   "trunk_type": "reg",
   "requires_register": true,
-  "register_username": "KickCalltest",
+  "register_username": "JambonzRetell",
   "register_sip_realm": "visionquest.22393.service",
   "e164_leading_plus": true,
   "is_active": true,
@@ -20,6 +20,7 @@
     "transport": "UDP — same as working jambonz.cloud to SkySwitch registration path",
     "codecs": "PCMU (0), PCMA (8), telephone-event (101)",
     "auth_pattern": "REGISTER -> 401/407 -> REGISTER with Authorization (digest)",
-    "register_password": "Set via SKYSWITCH_REGISTER_PASSWORD env var — do not commit"
+    "register_password": "Set via SKYSWITCH_REGISTER_PASSWORD env var — do not commit",
+    "isolated_identity": "Dedicated JambonzRetell SIP user — do not reuse KickCalltest (FreeSWITCH collision)"
   }
 }
