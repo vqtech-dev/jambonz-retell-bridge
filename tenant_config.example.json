@@ -1,0 +1,24 @@
+{
+  "+1DEMO_DID_HERE": {
+    "customer_id": "demo-open-dental",
+    "location_id": "353034",
+    "retell_agent_id": "",
+    "skyswitch_outbound_carrier": "SkySwitch-JambonzRetell",
+    "skyswitch_sip_realm": "visionquest.22393.service",
+    "skyswitch_register_username": "JambonzRetell",
+    "skyswitch_extension_domain": "visionquest.22393.service",
+    "retell_trunk_name": "Retell-73hR8GtTmfVmdn7kUbc1Fz",
+    "retell_sip_client_username": ""
+  },
+  "+1WOODS_DID_HERE": {
+    "customer_id": "woods-medical",
+    "location_id": "355231",
+    "retell_agent_id": "",
+    "skyswitch_outbound_carrier": "SkySwitch-JambonzRetell-Woods",
+    "skyswitch_sip_realm": "woods.SKYSWITCH_DOMAIN_HERE.service",
+    "skyswitch_register_username": "JambonzRetellWoods",
+    "skyswitch_extension_domain": "woods.SKYSWITCH_DOMAIN_HERE.service",
+    "retell_trunk_name": "",
+    "retell_sip_client_username": ""
+  }
+}

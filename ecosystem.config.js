@@ -22,7 +22,8 @@ module.exports = {
       SKYSWITCH_SIP_REALM: 'visionquest.22393.service',
       SKYSWITCH_REGISTER_USERNAME: 'KickCalltest',
       SKYSWITCH_EXTENSION_DOMAIN: 'visionquest.22393.service',
-      OWN_DIDS: '+12297406150'
+      OWN_DIDS: '+12297406150',
+      TENANT_CONFIG: '{"+1DEMO_DID_HERE":{"customer_id":"demo-open-dental","location_id":"353034","skyswitch_outbound_carrier":"SkySwitch-JambonzRetell","skyswitch_sip_realm":"visionquest.22393.service","skyswitch_register_username":"JambonzRetell","retell_trunk_name":"Retell-73hR8GtTmfVmdn7kUbc1Fz"},"+1WOODS_DID_HERE":{"customer_id":"woods-medical","location_id":"355231","skyswitch_outbound_carrier":"SkySwitch-JambonzRetell-Woods","skyswitch_sip_realm":"woods.SKYSWITCH_DOMAIN_HERE.service","skyswitch_register_username":"JambonzRetellWoods"}}'
     }
   }]
 };
