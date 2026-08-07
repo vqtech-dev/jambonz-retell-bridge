@@ -1,0 +1,88 @@
+{
+  "family": "vqtech-jambonz-retell-bridge",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512",
+  "executionRoleArn": "arn:aws:iam::673931177446:role/vqtech-prod-ecs-execution-role",
+  "taskRoleArn": "arn:aws:iam::673931177446:role/vqtech-prod-ecs-task-role",
+  "runtimePlatform": {
+    "cpuArchitecture": "X86_64",
+    "operatingSystemFamily": "LINUX"
+  },
+  "containerDefinitions": [
+    {
+      "name": "bridge",
+      "image": "673931177446.dkr.ecr.us-east-2.amazonaws.com/vqtech/jambonz-retell-bridge:latest",
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 3000,
+          "hostPort": 3000,
+          "protocol": "tcp",
+          "name": "bridge-3000-tcp",
+          "appProtocol": "http"
+        }
+      ],
+      "secrets": [
+        {
+          "name": "RETELL_API_KEY",
+          "valueFrom": "arn:aws:secretsmanager:us-east-2:673931177446:secret:vqtech/prod/JAMBONZ_RETELL_BRIDGE-PLACEHOLDER:RETELL_API_KEY::"
+        },
+        {
+          "name": "RETELL_TRUNK_NAME",
+          "valueFrom": "arn:aws:secretsmanager:us-east-2:673931177446:secret:vqtech/prod/JAMBONZ_RETELL_BRIDGE-PLACEHOLDER:RETELL_TRUNK_NAME::"
+        },
+        {
+          "name": "RETELL_SIP_CLIENT_USERNAME",
+          "valueFrom": "arn:aws:secretsmanager:us-east-2:673931177446:secret:vqtech/prod/JAMBONZ_RETELL_BRIDGE-PLACEHOLDER:RETELL_SIP_CLIENT_USERNAME::"
+        },
+        {
+          "name": "SKYSWITCH_CARRIER_NAME",
+          "valueFrom": "arn:aws:secretsmanager:us-east-2:673931177446:secret:vqtech/prod/JAMBONZ_RETELL_BRIDGE-PLACEHOLDER:SKYSWITCH_CARRIER_NAME::"
+        },
+        {
+          "name": "SKYSWITCH_SIP_REALM",
+          "valueFrom": "arn:aws:secretsmanager:us-east-2:673931177446:secret:vqtech/prod/JAMBONZ_RETELL_BRIDGE-PLACEHOLDER:SKYSWITCH_SIP_REALM::"
+        },
+        {
+          "name": "SKYSWITCH_REGISTER_USERNAME",
+          "valueFrom": "arn:aws:secretsmanager:us-east-2:673931177446:secret:vqtech/prod/JAMBONZ_RETELL_BRIDGE-PLACEHOLDER:SKYSWITCH_REGISTER_USERNAME::"
+        },
+        {
+          "name": "OWN_DIDS",
+          "valueFrom": "arn:aws:secretsmanager:us-east-2:673931177446:secret:vqtech/prod/JAMBONZ_RETELL_BRIDGE-PLACEHOLDER:OWN_DIDS::"
+        },
+        {
+          "name": "OVERRIDE_FROM_USER",
+          "valueFrom": "arn:aws:secretsmanager:us-east-2:673931177446:secret:vqtech/prod/JAMBONZ_RETELL_BRIDGE-PLACEHOLDER:OVERRIDE_FROM_USER::"
+        },
+        {
+          "name": "DEFAULT_COUNTRY",
+          "valueFrom": "arn:aws:secretsmanager:us-east-2:673931177446:secret:vqtech/prod/JAMBONZ_RETELL_BRIDGE-PLACEHOLDER:DEFAULT_COUNTRY::"
+        }
+      ],
+      "environment": [
+        {"name": "NODE_ENV", "value": "production"},
+        {"name": "LOGLEVEL", "value": "info"},
+        {"name": "PORT", "value": "3000"}
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/vqtech-jambonz-retell-bridge",
+          "awslogs-create-group": "true",
+          "awslogs-region": "us-east-2",
+          "awslogs-stream-prefix": "ecs"
+        }
+      },
+      "healthCheck": {
+        "command": ["CMD-SHELL", "curl -fsS http://localhost:3000/health || exit 1"],
+        "interval": 30,
+        "timeout": 5,
+        "retries": 3,
+        "startPeriod": 60
+      }
+    }
+  ]
+}
